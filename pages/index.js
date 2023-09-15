@@ -39,10 +39,10 @@ export default function Home() {
           </div>
           <div>
             <div className={styles.search}>              
-            <TextField color="secondary" id="outlined-basic" fullWidth className={styles.searchInput} onChange={(e) => setQuery(e.target.value)} label="Buscá tu disco!" variant="outlined" />
+            <TextField color="secondary" id="outlined-basic" className={styles.searchInput} onChange={(e) => setQuery(e.target.value)} label="Buscá tu disco!" variant="outlined" />
           </div>
           <div className={styles.buttonContainer}>
-          <Button className={styles.searchButton} component="label" variant="contained" onClick={searchQuery} startIcon={<SearchIcon/>}>
+          <Button className={styles.searchButton}  color="secondary" component="label" variant="contained" onClick={searchQuery} startIcon={<SearchIcon/>}>
               Buscar
             </Button>
           </div>

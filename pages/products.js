@@ -21,7 +21,7 @@ export default function Product() {
 
 
     useEffect(() => {
-      fetch('http://localhost:3000/api/chaser?search='+searchTerm)
+      fetch('https://record-chaser.vercel.app/api/chaser?search='+searchTerm)
       .then(response =>response.json())
       .then((res) => {
         setResults(res)
