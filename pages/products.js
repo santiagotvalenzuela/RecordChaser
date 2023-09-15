@@ -64,7 +64,7 @@ export default function Product() {
             <img className={styles.logo} onClick={logoHome} src='https://res.cloudinary.com/djwdwek3s/image/upload/v1694788849/chaser-logo2_1_ystbiz.png' alt="logo chaser"/>
           </div>
          <Grid className= {styles.gridContainer} container rowGap={3} columnGap={2}>
-          {results.map ((item) => (
+          {results.map ((key, item) => (
             <Grid>
             <Card title={item.title} className={styles.card}>
             <CardMedia
