@@ -2,7 +2,6 @@ const puppeteer = require('puppeteer');
 const axios = require ('axios');
 const cheerio = require('cheerio');
 
-
 export default async function handler(req, res) {
   if (req.method === 'GET'){
         const { search } = req.query;
@@ -394,6 +393,21 @@ async function fetchAll(busq){
   }
   const simplified = data.flat().map(obj => obj)
 
+  const searchWords = busq.split(/\s+/).map((word) => {
+    return word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  });
   
-  return simplified
+  // Create a regular expression with the search words joined by a pipe (|) for alternation
+  const regexString = searchWords.join('|');
+  const regex = new RegExp(regexString, 'i');
+  
+  // Use the filter method to find matching objects
+  const matchingObjects = simplified.filter((obj) => {
+    // Test the 'name' and 'description' properties against the regular expression
+    return regex.test(obj.title);
+  });
+  
+
+  
+  return matchingObjects
 }
