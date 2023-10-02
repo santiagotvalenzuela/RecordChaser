@@ -378,13 +378,112 @@ async function blackTorino(busq){ //ready
 
 }
 
+async function insomnio(){
+
+    const csvFile = 
+    await axios('https://docs.google.com/spreadsheets/d/1FS_xBceVVUJxUxmBKtEIr_kcojcQP2L6/gviz/tq?tqx=out:csv&gid=0')
+    .then(res => {return res.data})
+
+    return csv({
+        includeColumns: RegExp('ARTISTA|EFECTIVO')
+    })
+    .fromString(csvFile)
+    .then((jsonObj) =>{
+        const newObj = jsonObj.map (item =>({
+            title: item['ARTISTA / TITULO'],
+            price: item['$ EFECTIVO'],
+            image: 'https://res.cloudinary.com/djwdwek3s/image/upload/v1696201891/insomnio_eoyw9m.jpg',
+            url:'https://www.instagram.com/insomniodiscos/',
+            site:'Insomnio Discos'
+        }))
+        return (newObj)
+       
+    })
+    
+}
+
+async function insomnio2(){
+
+    const csvFile = 
+    await axios('https://docs.google.com/spreadsheets/d/1FS_xBceVVUJxUxmBKtEIr_kcojcQP2L6/gviz/tq?tqx=out:csv&gid=1705811890')
+    .then(res => {return res.data})
+
+    return csv({
+        includeColumns: RegExp('ARTISTA|EFECTIVO')
+    })
+    .fromString(csvFile)
+    .then((jsonObj) =>{
+        const newObj = jsonObj.map (item =>({
+            title: item['ARTISTA / TITULO'],
+            price: item['$ EFECTIVO'],
+            image: 'https://res.cloudinary.com/djwdwek3s/image/upload/v1696201891/insomnio_eoyw9m.jpg',
+            url:'https://www.instagram.com/insomniodiscos/',
+            site:'Insomnio Discos'
+        }))
+        return (newObj)
+       
+    })
+    
+}
+
+async function lecter(){
+    const articles = []
+    //const file = 'C:\Users\santiagov\Desktop\Documentos\Project\Puppet\STOCK LECTER.xlsx - STOCK.csv'
+    const csvFile = 
+    await axios('https://docs.google.com/spreadsheets/d/1V2OYyD74Vtrf7jblBCGI9XD0-VuqZXBC/gviz/tq?tqx=out:csv&gid=0')
+    .then(res => {return res.data})
+
+    return csv({
+        includeColumns: RegExp('Artista|Album|PVP')
+    })
+    .fromString(csvFile)
+    .then((jsonObj) =>{
+        const newObj = jsonObj.map (item =>({
+            title: item['Artista'] +' '+ item['Album'],
+            price: item['PVP'],
+            image: 'https://res.cloudinary.com/djwdwek3s/image/upload/v1696202712/291916079_552279316439538_8254701597113856415_n_ncpeex.jpg',
+            url:'https://www.instagram.com/lecterrecords/',
+            site:'Lecter Records'
+        }))
+        return (newObj)
+    }) 
+    
+}
+
+
+async function choppRock(){
+    
+    const csvFile = 
+    await axios('https://docs.google.com/spreadsheets/d/1UyALKSeVvL2894qegmpfNfQtt43eO0JxroYc8rpKTGE/gviz/tq?tqx=out:csv&gid=0')
+    .then(res => {return res.data})
+
+    return csv({
+        //includeColumns: RegExp('ACCESORIOS|field2|field3|field4'),
+        colParser:{
+            "field5":"omit", "field6":"omit","field7":"omit","field8":"omit","field9":"omit","field10":"omit","field11":"omit","field12":"omit","field13":"omit","field14":"omit","field15":"omit","field16":"omit","field17":"omit","field18":"omit","field19":"omit","field20":"omit","field21":"omit","field22":"omit","field23":"omit","field24":"omit","field25":"omit","field26":"omit"
+        }
+    })
+    .fromString(csvFile)
+    .then((jsonObj) =>{
+        const newObj = jsonObj.map (item =>({
+            title: item['ACCESORIOS '] +' '+ item['field2'],
+            price: item['field4'],
+            image: 'https://res.cloudinary.com/djwdwek3s/image/upload/v1696206233/chopp_fwnbm4.png',
+            url:'https://www.instagram.com/choppandrock/',
+            site:'Chopp & Rock'
+        }))
+        return (newObj)
+    }) 
+       
+} 
+
 
 
 
 async function fetchAll(busq){
   const data =[]
 
-  const promises = [jarana(busq), joey(busq), moulin(busq), blackTorino(busq), musicshop(busq), ml(busq), vader(busq), zivals(busq)]
+  const promises = [lecter(),insomnio(),insomnio2(),choppRock(),jarana(busq), joey(busq), moulin(busq), blackTorino(busq), musicshop(busq), ml(busq), vader(busq), zivals(busq)]
 
   const results = await Promise.allSettled(promises)
 
