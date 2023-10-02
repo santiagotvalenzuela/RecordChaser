@@ -484,7 +484,7 @@ async function choppRock(){
 async function fetchAll(busq){
   const data =[]
 
-  const promises = [lecter(),insomnio(),insomnio2(),choppRock(),jarana(busq), joey(busq), moulin(busq), blackTorino(busq), musicshop(busq), ml(busq), vader(busq), zivals(busq)]
+  const promises = [jarana(busq), joey(busq), moulin(busq), blackTorino(busq), musicshop(busq),lecter(),insomnio(),insomnio2(),choppRock(), ml(busq), vader(busq), zivals(busq)]
 
   const results = await Promise.allSettled(promises)
 
