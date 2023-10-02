@@ -1,6 +1,7 @@
 const puppeteer = require('puppeteer');
 const axios = require ('axios');
 const cheerio = require('cheerio');
+const csv = require('csvtojson')
 
 export default async function handler(req, res) {
   if (req.method === 'GET'){
