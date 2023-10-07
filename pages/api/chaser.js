@@ -315,7 +315,7 @@ async function moulin(busq){ //ready
 }
 
 async function ml(busq){ //ready
-    const query = busq +'vinilo'
+    const query = busq +' '+'vinilo'
 
     return axios({
         method: 'get',
