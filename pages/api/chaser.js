@@ -44,11 +44,13 @@ async function zivals(busq) { //ready
   
               $('.box', html).each(function () { //<-- cannot be a function expression
                   const title = $(this).find('.text-left').find('a').attr('title')
+                  const artist = $(this).find('.autor').find('a').text()
                   const url = 'https://www.zivals.com.ar/'+$(this).find('.text-left').find('a').attr('href')
                   const price = $(this).find('.row').find('a').attr('data-precio').replace('<span class="moneda">$AR</span>','')
                   const image = $(this).find('.row').find('a').attr('data-imagen')
                   articles.push({
                       title,
+                      artist,
                       url,
                       price,
                       image,
@@ -120,11 +122,13 @@ return axios(page)
             const articles = []
             $('.product', html).each(function () { //<-- cannot be a function expression
                 const title = $(this).find('a').find('h2').text()
+                const artist = $(this).find('h1').text()
                 const url = $(this).find('a').attr('href')
                 const price = $(this).find('.price').text().replace('$','')
                 const image = $(this).find('img').attr('src')
                 articles.push({
                     title,
+                    artist,
                     url,
                     price,
                     image,
@@ -162,11 +166,13 @@ return axios(url)
             const articles = []
             $('.product', html).each(function () { //<-- cannot be a function expression
                 const title = $(this).find('.title').text()
+                const artist = $(this).find('.artist').text()
                 const url = 'https://www.disqueriamusicshop.com/'+$(this).attr('href')
                 const price = $(this).find('.price').text().trim().replace('ARS','')
                 const image = 'https://www.disqueriamusicshop.com/' + $(this).find('.img').attr('src')
                 articles.push({
                     title,
+                    artist,
                     url,
                     price,
                     image,
@@ -203,11 +209,13 @@ async function vader(busq){ //ready
             
             $('.product', html).each(function () { //<-- cannot be a function expression
                 const title = $(this).find('.woocommerce-loop-product__title').text()
+                const artist = $(this).find('.woocommerce-loop-product__title').text()
                 const url = $(this).find('a').attr('href')
                 const price = $(this).find('.price').text().replace('$','')
                 const image = $(this).find('img').attr('src')
                 articles.push({
                     title,
+                    artist,
                     url,
                     price,
                     image,
@@ -244,11 +252,13 @@ async function joey(busq){ //ready
 
           $('.products-feed__product-wrapper', html).each(function () { //<-- cannot be a function expression
               const title = $(this).find('.products-feed__product-name').text().trim()
+              const artist = $(this).find('.products-feed__product-name').text().trim()
               const url = $(this).find('a').attr('href')
               const price = $(this).find('.products-feed__product-price').text().trim().replace('$','')
               const image = $(this).find('.products-feed__product-image').attr('src')
               articles.push({
                   title,
+                  artist,
                   url,
                   price,
                   image,
@@ -285,11 +295,13 @@ async function moulin(busq){ //ready
 
             $('.products-feed__product-wrapper', html).each(function () { //<-- cannot be a function expression
                 const title = $(this).find('.products-feed__product-name').text().trim()
+                const artist = $(this).find('.products-feed__product-name').text().trim()
                 const url = $(this).find('a').attr('href')
                 const price = $(this).find('.products-feed__product-price').text().trim().replace('$','')
                 const image = $(this).find('.products-feed__product-image').attr('src')
                 articles.push({
                     title,
+                    artist,
                     url,
                     price,
                     image,
@@ -320,6 +332,7 @@ async function ml(busq){ //ready
         const records = responseData.map(item => {
             return {
                 title: item.title,
+                artist: item.title,
                 url: item.permalink,
                 price: item.price,
                 image: item.thumbnail,
@@ -362,11 +375,13 @@ async function blackTorino(busq){ //ready
 
             $('.products-feed__product-wrapper', html).each(function () { //<-- cannot be a function expression
                 const title = $(this).find('.products-feed__product-name').text().trim()
+                const artist = $(this).find('.products-feed__product-name').text().trim()
                 const url = $(this).find('a').attr('href')
                 const price = $(this).find('.products-feed__product-price').text().trim().replace('$','')
                 const image = $(this).find('.products-feed__product-image').attr('src')
                 articles.push({
                     title,
+                    artist,
                     url,
                     price,
                     image,
@@ -392,6 +407,7 @@ async function insomnio(){
     .then((jsonObj) =>{
         const newObj = jsonObj.map (item =>({
             title: item['ARTISTA / TITULO'],
+            artist: item['ARTISTA / TITULO'],
             price: item['$ EFECTIVO'],
             image: 'https://res.cloudinary.com/djwdwek3s/image/upload/v1696201891/insomnio_eoyw9m.jpg',
             url:'https://www.instagram.com/insomniodiscos/',
@@ -416,6 +432,7 @@ async function insomnio2(){
     .then((jsonObj) =>{
         const newObj = jsonObj.map (item =>({
             title: item['ARTISTA / TITULO'],
+            artist: item['ARTISTA / TITULO'],
             price: item['$ EFECTIVO'],
             image: 'https://res.cloudinary.com/djwdwek3s/image/upload/v1696201891/insomnio_eoyw9m.jpg',
             url:'https://www.instagram.com/insomniodiscos/',
@@ -441,6 +458,7 @@ async function lecter(){
     .then((jsonObj) =>{
         const newObj = jsonObj.map (item =>({
             title: item['Artista'] +' '+ item['Album'],
+            artist: item['Artista'],
             price: item['PVP'],
             image: 'https://res.cloudinary.com/djwdwek3s/image/upload/v1696202712/291916079_552279316439538_8254701597113856415_n_ncpeex.jpg',
             url:'https://www.instagram.com/lecterrecords/',
@@ -468,6 +486,7 @@ async function choppRock(){
     .then((jsonObj) =>{
         const newObj = jsonObj.map (item =>({
             title: item['ACCESORIOS '] +' '+ item['field2'],
+            artist: item['ACCESORIOS '],
             price: item['field4'],
             image: 'https://res.cloudinary.com/djwdwek3s/image/upload/v1696206233/chopp_fwnbm4.png',
             url:'https://www.instagram.com/choppandrock/',
@@ -493,21 +512,12 @@ async function fetchAll(busq){
   }
   const simplified = data.flat().map(obj => obj)
 
-  const searchWords = busq.split(/\s+/).map((word) => {
-    return word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  });
-  
-  // Create a regular expression with the search words joined by a pipe (|) for alternation
-  const regexString = searchWords.join('|');
-  const regex = new RegExp(regexString, 'i');
-  
-  // Use the filter method to find matching objects
-  const matchingObjects = simplified.filter((obj) => {
-    // Test the 'name' and 'description' properties against the regular expression
-    return regex.test(obj.title);
-  });
-  
-
+  const finalSearch = busq.toLowerCase()
+    
+      const matchingObjects = simplified.filter((obj) => {
+        return obj.title.toLowerCase().includes(finalSearch) || obj.artist.toLowerCase().includes(finalSearch) 
+      });
+      
   
   return matchingObjects
 }

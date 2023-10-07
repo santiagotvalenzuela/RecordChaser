@@ -35,3 +35,7 @@
         height: 280px;
     }
 }
+
+.logoContainer {
+    cursor: pointer;
+}
