@@ -102,11 +102,12 @@ return axios(page)
                 const articles = []
                 $('.summary', html).each(function () { //<-- cannot be a function expression
                     const title = $(this).find('h1').text()
-                    //const url = page
+                    const artist = $(this).find('h1').text()
                     const price = $(this).find('.price').text().replace('$','')
                     const image = $('.product').find('.woocommerce-product-gallery__wrapper').find('img').attr('src')
                     articles.push({
                         title,
+                        artist,
                         url,
                         price,
                         image,
@@ -511,11 +512,12 @@ async function fetchAll(busq){
       data.push(res.value)
   }
   const simplified = data.flat().map(obj => obj)
+  
 
   const finalSearch = busq.toLowerCase()
     
       const matchingObjects = simplified.filter((obj) => {
-        return obj.title.toLowerCase().includes(finalSearch) || obj.artist.toLowerCase().includes(finalSearch) 
+        return obj.title.toLowerCase().includes(finalSearch) || obj.artist.toLowerCase().includes(finalSearch)
       });
       
   
