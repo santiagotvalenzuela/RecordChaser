@@ -486,8 +486,8 @@ async function choppRock(){
     .fromString(csvFile)
     .then((jsonObj) =>{
         const newObj = jsonObj.map (item =>({
-            title: item['ACCESORIOS '] +' '+ item['field2'],
-            artist: item['ACCESORIOS '],
+            title: item['field2'],
+            artist: item['ACCESORIOS  CEPILLO FIBRA DE CARBONO  CEPILLO PUA CEPILLO FELPA GEL LIMPIAPUA'],
             price: item['field4'],
             image: 'https://res.cloudinary.com/djwdwek3s/image/upload/v1696206233/chopp_fwnbm4.png',
             url:'https://www.instagram.com/choppandrock/',
@@ -503,6 +503,7 @@ async function choppRock(){
 
 async function fetchAll(busq){
   const data =[]
+  const searchQuery = busq
 
   const promises = [jarana(busq), joey(busq), moulin(busq), blackTorino(busq), musicshop(busq),lecter(),insomnio(),insomnio2(),choppRock(), ml(busq), vader(busq), zivals(busq)]
 
@@ -513,9 +514,10 @@ async function fetchAll(busq){
   }
   const simplified = data.flat().map(obj => obj)
   
-
+  
   const finalSearch = busq.toLowerCase()
-    
+
+
       const matchingObjects = simplified.filter((obj) => {
         return obj.title.toLowerCase().includes(finalSearch) || obj.artist.toLowerCase().includes(finalSearch)
       });
