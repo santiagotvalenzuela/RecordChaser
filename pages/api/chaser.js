@@ -442,7 +442,7 @@ async function insomnio2(){
         const newObj = jsonObj.map (item =>({
             title: item['ARTISTA / TITULO'],
             artist: item['ARTISTA / TITULO'],
-            price: item['$ EFECTIVO'],
+            price: item['$ EFECTIVO / TRANSFER'],
             image: 'https://res.cloudinary.com/djwdwek3s/image/upload/v1696201891/insomnio_eoyw9m.jpg',
             url:'https://www.instagram.com/insomniodiscos/',
             site:'Insomnio Discos'
