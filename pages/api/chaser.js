@@ -513,7 +513,7 @@ async function fetchAll(busq){
   const data =[]
   //const searchQuery = busq
 
-  const promises = [musicshop(busq),ml(busq), vader(busq), zivals(busq),insomnio(),insomnio2(),jarana(busq),joey(busq), moulin(busq), blackTorino(busq)] //,
+  const promises = [jarana(busq), joey(busq), moulin(busq), blackTorino(busq), musicshop(busq),insomnio(),insomnio2(), ml(busq), vader(busq), zivals(busq)]
 
   const results = await Promise.allSettled(promises)
 
