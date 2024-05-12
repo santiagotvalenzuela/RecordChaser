@@ -1,3 +1,5 @@
+import { headers } from 'next/dist/client/components/headers';
+
 const puppeteer = require('puppeteer');
 const axios = require ('axios');
 const cheerio = require('cheerio');
@@ -152,15 +154,21 @@ if (query.includes(' '))
 {
     const regex = new RegExp(replace, 'g');
     let search = query.replace(regex,'%20');
-    url = 'https://www.disqueriamusicshop.com/prods/search/?search='+search+'&category=3'
+    url = 'http://www.disqueriamusicshop.com/prods/search/?search='+search+'&category=3'
 }
 else{
-    url ='https://www.disqueriamusicshop.com/prods/search/?search='+query+'&category=3'
+    url ='http://www.disqueriamusicshop.com/prods/search/?search='+query+'&category=3'
 }
 
 //console.log(url)
-
-return axios(url)
+//fixed scrap block with user-agent
+return axios(url,
+    {
+        headers:{
+            'User-Agent': 'Mozilla/5.0 (platform; rv:geckoversion) Gecko/geckotrail Firefox/firefoxversion'
+        }
+    }
+)
         .then(response => {
             const html = response.data
             const $ = cheerio.load(html)
@@ -409,9 +417,9 @@ async function insomnio(){
         const newObj = jsonObj.map (item =>({
             title: item['ARTISTA / TITULO'],
             artist: item['ARTISTA / TITULO'],
-            price: item['$ EFECTIVO'],
+            price: item['$ EFECTIVO / TRANSFER'],
             image: 'https://res.cloudinary.com/djwdwek3s/image/upload/v1696201891/insomnio_eoyw9m.jpg',
-            url:'https://www.instagram.com/insomniodiscos/',
+            url:'https://docs.google.com/spreadsheets/d/1FS_xBceVVUJxUxmBKtEIr_kcojcQP2L6',
             site:'Insomnio Discos'
         }))
         return (newObj)
@@ -503,9 +511,9 @@ async function choppRock(){
 
 async function fetchAll(busq){
   const data =[]
-  const searchQuery = busq
+  //const searchQuery = busq
 
-  const promises = [jarana(busq), joey(busq), moulin(busq), blackTorino(busq), musicshop(busq),lecter(),insomnio(),insomnio2(),choppRock(), ml(busq), vader(busq), zivals(busq)]
+  const promises = [musicshop(busq),ml(busq), vader(busq), zivals(busq),insomnio(),insomnio2(),jarana(busq),joey(busq), moulin(busq), blackTorino(busq)] //,
 
   const results = await Promise.allSettled(promises)
 
@@ -513,7 +521,7 @@ async function fetchAll(busq){
       data.push(res.value)
   }
   const simplified = data.flat().map(obj => obj)
-  
+  //console.log(simplified)
   
   const finalSearch = busq.toLowerCase()
 
@@ -522,6 +530,6 @@ async function fetchAll(busq){
         return obj.title.toLowerCase().includes(finalSearch) || obj.artist.toLowerCase().includes(finalSearch)
       });
       
-  
+  //console.log(matchingObjects)
   return matchingObjects
 }
